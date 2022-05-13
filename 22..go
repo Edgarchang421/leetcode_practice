@@ -71,6 +71,10 @@ func generateParenthesisFailV2(n int) []string {
 
 // Runtime: 3 ms, faster than 51.75% of Go online submissions for Generate Parentheses.
 // Memory Usage: 2.7 MB, less than 92.59% of Go online submissions for Generate Parentheses.
+// back tracking
+// 選擇: 所有使用了n個左括號和n個右括號的字串。
+// 限制: 需要為有效括號，左括號一定要先於右括號使用，從左邊往右邊開始看，右括號數量永遠不會大於左括號。
+// 結束: 應使用的括號數量皆使用完畢。
 func generateParenthesis(n int) []string {
 	//output at each stage
 	op := ""
@@ -88,31 +92,35 @@ func solve(left, right int, ans *[]string, str string) {
 	fmt.Printf("o: %v, c: %v, s: %v, op: %v ,recu\n", left, right, *ans, str)
 	// base case
 	// 已經加入正確數量的左右括弧了，將str加入倒ans中
+	// back tracking中止: 應使用的括號數量皆使用完畢。
+	// back tracking選擇: 所有使用了n個左括號和n個右括號的字串。
 	if left == 0 && right == 0 {
 		//update the pointer for base case, just add whatever is the output
 
 		*ans = append(*ans, str)
-		fmt.Printf("s: %v\n", *ans)
-		fmt.Printf("o: %v, c: %v, s: %v, op: %v ,left==right==0 return\n", left, right, *ans, str)
+		// fmt.Printf("s: %v\n", *ans)
+		// fmt.Printf("o: %v, c: %v, s: %v, op: %v ,left==right==0 return\n", left, right, *ans, str)
 		return
 	}
 
 	// ( case, when we have opening backet we add '(' to output
 	// 一定要先加入左括弧，才能和右括弧形成正確的排序
+	// back tracking限制: 需要為有效括號，左括號一定要先於右括號使用，從左邊往右邊開始看，右括號數量永遠不會大於左括號。
 	if left != 0 {
 		op1 := str + "("
-		fmt.Printf("o: %v, op: %v\n", left, op1)
+		// fmt.Printf("o: %v, op: %v\n", left, op1)
 		solve(left-1, right, ans, op1)
 	}
 
 	// ) case , when we have opening backet we add ')' to output only if closing count is greater
 	// 左括弧的數量已經使用完了，如果右括弧的數量還多於左括弧，就需要加進去
+	// back tracking限制: 需要為有效括號，左括號一定要先於右括號使用，從左邊往右邊開始看，右括號數量永遠不會大於左括號。
 	if right > left {
 		op2 := str + ")"
-		fmt.Printf("c: %v, op: %v\n", right, op2)
+		// fmt.Printf("c: %v, op: %v\n", right, op2)
 		solve(left, right-1, ans, op2)
 	}
 
-	fmt.Printf("o: %v, c: %v, s: %v, op: %v return\n", left, right, *ans, str)
+	// fmt.Printf("o: %v, c: %v, s: %v, op: %v return\n", left, right, *ans, str)
 	return
 }
