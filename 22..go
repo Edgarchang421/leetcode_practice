@@ -106,6 +106,7 @@ func solve(left, right int, ans *[]string, str string) {
 	// ( case, when we have opening backet we add '(' to output
 	// 一定要先加入左括弧，才能和右括弧形成正確的排序
 	// back tracking限制: 需要為有效括號，左括號一定要先於右括號使用，從左邊往右邊開始看，右括號數量永遠不會大於左括號。
+	// 選擇: 所有使用了n個左括號和n個右括號的字串。
 	if left != 0 {
 		op1 := str + "("
 		// fmt.Printf("o: %v, op: %v\n", left, op1)
@@ -115,6 +116,7 @@ func solve(left, right int, ans *[]string, str string) {
 	// ) case , when we have opening backet we add ')' to output only if closing count is greater
 	// 左括弧的數量已經使用完了，如果右括弧的數量還多於左括弧，就需要加進去
 	// back tracking限制: 需要為有效括號，左括號一定要先於右括號使用，從左邊往右邊開始看，右括號數量永遠不會大於左括號。
+	// 選擇: 所有使用了n個左括號和n個右括號的字串。
 	if right > left {
 		op2 := str + ")"
 		// fmt.Printf("c: %v, op: %v\n", right, op2)
