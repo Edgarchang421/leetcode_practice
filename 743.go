@@ -224,7 +224,7 @@ func networkDelayTime(times [][]int, n int, k int) int {
 		// 判斷 k -> node3 和 k -> node2 -> node3，兩者誰比較短
 		for node := 1; node <= n; node++ {
 			// 檢視這個點的out(可通行)，更新到final中
-			if graph[closestNode][node] < 101 {
+			if graph[closestNode][node] < unreachableDelaytime {
 				// 比較現在儲存的距離(可能為101無法通行，或者有其他長度)，以及另外的路徑加總
 				if final[node] > final[closestNode]+graph[closestNode][node] {
 					final[node] = final[closestNode] + graph[closestNode][node]
@@ -283,7 +283,7 @@ func networkDelayTimeClean(times [][]int, n int, k int) int {
 		}
 		book[closestNode] = true
 		for node := 1; node <= n; node++ {
-			if graph[closestNode][node] < 101 {
+			if graph[closestNode][node] < unreachableDelaytime {
 				if final[node] > final[closestNode]+graph[closestNode][node] {
 					final[node] = final[closestNode] + graph[closestNode][node]
 				}
