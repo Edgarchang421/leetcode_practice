@@ -52,7 +52,7 @@ func isAnagram2(s string, t string) bool {
 		m[str-aNum]++
 	}
 	for _, str := range t {
-		m[str-aNum]++
+		m[str-aNum]--
 	}
 	for _, val := range m {
 		if val != 0 {
