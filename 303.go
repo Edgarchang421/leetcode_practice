@@ -51,3 +51,27 @@ func (this *NumArray) SumRange(left int, right int) int {
 	}
 	return this.DP[right] - this.DP[left-1]
 }
+
+// 只存結果
+// Runtime: 51 ms, faster than 37.09% of Go online submissions for Range Sum Query - Immutable.
+// Memory Usage: 8.4 MB, less than 92.02% of Go online submissions for Range Sum Query - Immutable.
+type NumArray2 struct {
+	Nums []int
+}
+
+func Constructor2(nums []int) NumArray2 {
+	var data NumArray2
+	data.Nums = make([]int, len(nums))
+	data.Nums[0] = nums[0]
+	for i := 1; i < len(nums); i++ {
+		data.Nums[i] = data.Nums[i-1] + nums[i]
+	}
+	return data
+}
+
+func (this *NumArray2) SumRange(left int, right int) int {
+	if left == 0 {
+		return this.Nums[right]
+	}
+	return this.Nums[right] - this.Nums[left-1]
+}
