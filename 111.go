@@ -31,13 +31,6 @@ func minDepth(root *TreeNode) int {
 	return min(l, r) + 1
 }
 
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
-}
-
 // 兩邊分開走，for迴圈先走到底部時就直接回傳，使用list儲存要繼續往下走的點
 // Runtime: 279 ms, faster than 41.51% of Go online submissions for Minimum Depth of Binary Tree.
 // Memory Usage: 22.5 MB, less than 39.62% of Go online submissions for Minimum Depth of Binary Tree.
