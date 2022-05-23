@@ -77,6 +77,7 @@ func shortestCommonSupersequence(str1 string, str2 string) string {
 				d  1  2  2
 				e  1  2  3
 				取完e之後，移動至(abcd,ac)，需判斷取出d or c之後，LCS的長度會較長，取出d之後的(abc,ac)的LCS較長，故取出d放到SCS中
+				取出d之後，LCS長度不變，代表d不會包含在剩餘的LCS，屬於兩組字串扣除LCS後，各自剩餘的字
 			*/
 		} else if LCSDP[i-1][j] > LCSDP[i][j-1] {
 			SCS += string(str1[i-1])
