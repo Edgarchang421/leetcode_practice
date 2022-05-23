@@ -70,7 +70,7 @@ func shortestCommonSupersequence(str1 string, str2 string) string {
 			// 例 str1: abcde str2: ace
 			/*
 				dp:
-					a  c  e
+				   a  c  e
 				a  1  1  1
 				b  1  1  1
 				c  1  2  2
